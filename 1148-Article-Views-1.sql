@@ -1,4 +1,7 @@
 
+-- Its important to note WHY SELF-JOIN won't work here, because we want to match only the records corresponding to current record.
+-- And self joint author_id = viewer_id will return the result if 1 id is found in any row of another column !
+
 -- Solution-1, using CASE
 # Method-1
 SELECT id

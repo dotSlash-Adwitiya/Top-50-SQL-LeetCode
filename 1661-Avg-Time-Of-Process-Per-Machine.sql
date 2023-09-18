@@ -16,3 +16,16 @@ AND A2.activity_type = 'end'
 
 -- In the end, we need the result set, GROUPED_BY machined_id
 GROUP BY machine_id ORDER BY machine_id;
+
+# Method - 2 : CASE Approach
+SELECT machine_id, 
+ROUND(
+    SUM(
+        CASE 
+            WHEN activity_type = 'start' then timestamp*-1 
+            ELSE timestamp 
+        END
+       ) / COUNT(distinct process_id), 3
+    ) as processing_time 
+FROM Activity
+GROUP BY machine_id;

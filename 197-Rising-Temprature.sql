@@ -5,6 +5,6 @@
 
 
 -- # Method - Use SELF-JOIN, DATEDIFF() is the function which subtracts 2 dates, 1st param > 2nd param to get a +ve value
-SELECT w1.id FROM  Weather w1 
-JOIN Weather w2 WHERE DATEDIFF(w1.recordDate, w2.recordDate) = 1 
-AND w1.recordDate > w2.recordDate;
+SELECT w2.id FROM  Weather w1 
+JOIN Weather w2 ON DATEDIFF(w2.recordDate, w1.recordDate) = 1 
+AND w1.temperature < w2.temperature;

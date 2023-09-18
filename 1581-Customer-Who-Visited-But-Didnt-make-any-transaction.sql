@@ -9,8 +9,17 @@
 
 -- Group BY is important here, because we need to find the count() of visits made by the customer without making any transaction, and there can be multiple such visits
 
+-- # Method-1 : Using Corelated subquery
 SELECT v.customer_id, COUNT(v.customer_id) as count_no_trans FROM Visits v
     WHERE 0 = (
     SELECT COUNT(t.visit_id) FROM Transactions t 
     WHERE t.visit_id = v.visit_id
   ) GROUP BY v.customer_id;
+
+
+-- # Method-2 : Using LEFT JOIN
+SELECT v.customer_id, COUNT(v.customer_id) as count_no_trans FROM 
+Visits v LEFT JOIN Transactions t USING(visit_id) 
+-- We Need the records of customer id from Visits Table(Left) on the condition where, the corresponding records are NULL
+WHERE t.visit_id IS NULL
+GROUP BY v.customer_id;

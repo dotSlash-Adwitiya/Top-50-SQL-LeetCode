@@ -22,3 +22,22 @@ AS confirmation_rate
 FROM Signups s1 
 LEFT JOIN Confirmations c1 USING (user_id)
 GROUP BY s1.user_id;
+
+
+# Method - 2
+-- USING AVG Function !
+SELECT s.user_id,
+     ROUND(COALESCE(
+                    AVG(
+                        CASE
+                            WHEN c.action = 'confirmed' THEN 1
+                            ELSE 0 
+                        END
+                        -- IF(c.action = 'confirmed',1,0) IF() works just like ternary operator
+                        )
+                 ,0)
+        , 2)
+AS confirmation_rate
+FROM Signups s
+LEFT JOIN Confirmations c USING (user_id)
+GROUP BY s1.user_id;

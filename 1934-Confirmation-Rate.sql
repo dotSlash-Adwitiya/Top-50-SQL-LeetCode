@@ -3,7 +3,7 @@
 -- Problem Statement : Find the confirmation rate of all the users and the corresponding ids.
 -- The problem requires us to fetch the average as - (Sum of records as 'confirmed' / Total records)
 -- New Learning : 0/0 in MySQL will result in NULL
-
+-- NOTE : Joins are executed first then followed by the filtering of the where clause
 SELECT s1.user_id, ROUND(COALESCE(
     -- #  AVG Formulat : SUM / Total
     -- # Calculate all the records that have action = 'confirmed'

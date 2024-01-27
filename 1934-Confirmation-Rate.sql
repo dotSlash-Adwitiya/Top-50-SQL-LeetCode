@@ -72,3 +72,26 @@ SELECT user_id,
        ROUND(SUM(IFNULL(total_confirmed / total_request, 0)), 2) AS CONFIRMATION_RATE
 FROM cte2
 GROUP BY user_id;
+
+
+-- Practice-1 : NEW LEARNING from below solution :-
+-- IF(specify condition on which you want to count as n, n (value you want to add as the condition is satisfied), ELSE - 0)
+-- You need to GROUP by based on the table on which you're performing a join.
+-- 
+SELECT s.user_id, 
+ROUND(
+    AVG(
+        IF(c.action = "confirmed", 1, 0)
+    )
+, 2) as confirmation_rate
+FROM Signups s
+LEFT JOIN   
+Confirmations c
+ON (s.user_id = c.user_id)
+GROUP BY s.user_id;
+
+-- You need to take under consideration :-
+-- GROUP BY : If one table has the possibility, that it may not contain
+-- some records that are present in another table
+-- that is, if the left table can have some records that aren't there in right table,
+-- THEN - YOu must GROUP BY the Left TAble only !!! Else the solution isn't gonna work !!

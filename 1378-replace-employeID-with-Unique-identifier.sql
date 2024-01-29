@@ -12,8 +12,10 @@ SELECT e2.unique_id, e1.name
 FROM Employees e1
 LEFT JOIN EmployeeUNI e2 USING(id);
 
-# PRACTICE
+-- # PRACTICE - 1, learnt why we had to perform a left join.
 SELECT e2.unique_id, e1.name 
     FROM Employees e1 
 LEFT JOIN EmployeeUNI e2 ON
 (e1.id = e2.id);
+
+

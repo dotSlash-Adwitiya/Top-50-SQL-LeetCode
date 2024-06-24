@@ -12,6 +12,8 @@ AND w1.temperature < w2.temperature;
 
 
 -- Following code will pass 14/15 test cases.
+-- & Because, if the date is : 1st of any month, then subtracting it would give invalid values
+-- * HENCE WE USE, DATADIFF Pre-defined Function!!
 SELECT w2.id FROM Weather w1
 INNER JOIN Weather w2 ON (DAY(w2.recordDate)-1 = DAY(w1.recordDate))
 WHERE w2.temperature > w1.temperature

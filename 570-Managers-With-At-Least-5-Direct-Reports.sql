@@ -44,3 +44,8 @@ WHERE id = (  -- You can use = symbol or IN here.
 SELECT e1.name FROM Employee e1 
 INNER JOIN Employee e2 WHERE e1.id = e2.managerId
 GROUP BY e2.managerId HAVING COUNT(e2.managerId) >= 5;
+
+-- Practice: 1
+SELECT e1.name FROM Employee e1 
+INNER JOIN Employee e2 WHERE e1.id = e2.managerId
+GROUP BY e2.managerId HAVING COUNT(e2.managerId) >= 5;
